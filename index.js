@@ -1,3 +1,26 @@
+/**
+	 * function for sorting array with multiple keys
+	 * @param firstKey 
+	 * @param secondKey 
+	 */
+ RankingSorter(firstKey, secondKey) {
+  return function (a, b) {
+    if (a[firstKey] > b[firstKey]) {
+      return -1;
+    } else if (a[firstKey] < b[firstKey]) {
+      return 1;
+    }
+    else {
+      if (a[secondKey] > b[secondKey]) {
+        return 1;
+      } else if (a[secondKey] < b[secondKey]) {
+        return -1;
+      } else {
+        return 0;
+      }
+    }
+  }
+}
 let arr = [
   {
     name: 'somo1',
@@ -80,6 +103,8 @@ let arr = [
     level: 2
   }
 ];
+arr.sort(this.RankingSorter("buyInAmount", "eliminationTime"))
+
 let resultObj = arr.reduce(function(r, a) {
   r[a.buyInAmount] = r[a.buyInAmount] || [];
   r[a.buyInAmount].push(a);
